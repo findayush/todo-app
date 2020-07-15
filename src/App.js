@@ -1,24 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const [currentInp, setcurrentInp] = useState('');
+  const [taskList, setTaskList] = useState([]);
+
+  function currentTodo(e) {
+    console.log(e.target.value);
+    setcurrentInp(e.target.value);
+  }
+  function addTask() {
+    setTaskList(taskList.concat([{id: Math.random(),taskVal: currentInp, isDone:false}]));
+    console.log(taskList);
+
+  }
+
+  function listItemClick(id){
+
+    console.log(id);
+
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="wrapper">
+      <input type="text" defaultValue="" placeholder="Enter your todo here" onChange={currentTodo}/>
+    <button onClick={addTask}>Add</button>
       </header>
+      <ul className="list">
+      {taskList &&
+      taskList.length>0 &&
+      taskList.map(item => {
+        return (
+          <li className="task"id={item.id} onClick={() => listItemClick(item.id)}>{item.taskVal}</li>
+        );
+      })}
+        
+      </ul>
     </div>
   );
 }
