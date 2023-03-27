@@ -13,7 +13,6 @@ function App() {
   }
   function addTask() {
     setTaskList(taskList.concat([{id: Math.random(),taskVal: currentInp, isDone:false}]));
-    console.log(taskList);
 
   }
 
