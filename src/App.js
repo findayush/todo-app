@@ -18,7 +18,7 @@ function App() {
 
   function listItemClick(id){
 
-    console.log(id);
+    console.log("id",id);
 
 
   }
